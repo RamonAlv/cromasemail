@@ -13,7 +13,7 @@ let Transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: '171106@ids.upchiapas.edu.mx',
-        pass: 'ear52761385132897xd1388'
+        pass: 'e@rMich138831.'
     }
 });
 
