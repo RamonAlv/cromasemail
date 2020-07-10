@@ -5,6 +5,8 @@ const cors = require('cors');
 
 const app = express();
 
+let port = process.env.PORT || 3334;
+
 const nodemailer = require('nodemailer');
 
 let Transport = nodemailer.createTransport({
@@ -19,7 +21,7 @@ app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const PORT = '3334';
+//const PORT = '3334';
 const HOST = '127.0.0.1';
 
 app.get('/', (req, res) => {
@@ -66,6 +68,6 @@ app.post('/api/v2/password',(req,res)=>{//Cambio de contraseña a traves de corr
     );
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://${HOST}:${PORT}`);
+app.listen(port, () => {
+    console.log(`Server running on http://${HOST}:${port}`);
 });
