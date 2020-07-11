@@ -12,7 +12,7 @@ const nodemailer = require('nodemailer');
 let Transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: '171106@ids.upchiapas.edu.mx',
+        user: 'ramon.alvarado.al@outlook.com',
         pass: 'e@rMich138831.'
     }
 });
