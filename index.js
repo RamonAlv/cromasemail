@@ -55,7 +55,7 @@ app.post('/api/v2/password',(req,res)=>{//Cambio de contraseña a traves de corr
         to: req.body.email,
         subject: "Solicitud de cambio de contraseña",
         html: `
-            <h1>Hola, si usted no hizo la solicitud porfavor ignore este correo</h1>
+            <h1>Hola, si usted no hizo la solicitud por favor ignore este correo</h1>
             <a href="https://croma.esimx.org/fpassword/${req.body.token}">Cambio de contraseña aqui!</a>
         `
     }).then((r) => {
