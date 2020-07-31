@@ -1,13 +1,22 @@
 const express = require('express');
 
 const bodyParser = require('body-parser');
+
+const urlparse = require('url-parse');
+
 const cors = require('cors');
 
+const fs = require('fs');
+const upload = require('express-fileupload');
+
 const app = express();
+
+// const multer = require('multer');
 
 let port = process.env.PORT || 3334;
 
 const nodemailer = require('nodemailer');
+const { dir } = require('console');
 
 let Transport = nodemailer.createTransport({
     service: 'Gmail',
@@ -17,15 +26,36 @@ let Transport = nodemailer.createTransport({
     }
 });
 
-app.use(cors())                                            
+app.use(cors());
+app.use(urlparse)
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(upload());
+app.use(express.static('public'));
 
 //const PORT = '3334';
 const HOST = '127.0.0.1';
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
+});
+
+//Subir img
+app.post('/api/v2/img',(req,res) => {
+    let file = req.files.img;
+    var dir = './public' + `/${req.body.data}/`;
+    var image = `/${req.body.data}/` + file.name;
+    
+    if (!fs.existsSync(dir))
+        fs.mkdirSync(dir);
+
+    file.mv(`${dir}${file.name}`, err => {
+        if(err){
+            return res.status(500).send({message:err});
+        }
+        return res.status(200).send({path:image})
+    });
+
 });
 
 app.post('/api/v2/email',(req,res)=>{//Confirmacion de Cuenta a traves de correo
