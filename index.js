@@ -43,13 +43,14 @@ app.get('/', (req, res) => {
 //Subir img
 app.post('/api/v2/img',(req,res) => {
     let file = req.files.img;
+    let today = new Date();
     var dir = './public' + `/${req.body.data}/`;
-    var image = `/${req.body.data}/` + file.name;
+    var image = `/${req.body.data}/` + today.valueOf().toString()+ file.name;
     
     if (!fs.existsSync(dir))
         fs.mkdirSync(dir);
 
-    file.mv(`${dir}${file.name}`, err => {
+    file.mv(`${dir}${today.valueOf().toString()}${file.name}`, err => {
         if(err){
             return res.status(500).send({message:err});
         }
