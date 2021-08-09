@@ -21,8 +21,8 @@ const { dir } = require('console');
 let Transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: '171106@ids.upchiapas.edu.mx',
-        pass: 'e@rMich138831.'
+        user: 'email@email.em',
+        pass: 'emailPassword'
     }
 });
 
